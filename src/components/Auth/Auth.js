@@ -7,11 +7,16 @@ class Auth extends Component {
         super(props)
         this.state = {
             login: true,
-        firstName: '',
-        lastName: '',
-        email: '',
-        password: ''
+            firstName: '',
+            lastName: '',
+            email: '',
+            password: ''
         }
+    }
+
+    
+    handleChange = (event) => {
+        this.setState({ [event.target.id]: event.target.value })
     }
 
     handleSubmit = (event) => {
@@ -26,19 +31,20 @@ class Auth extends Component {
                 email: this.state.email,
                 password: this.state.password
             }),
-            headers: {
+            headers: new Headers({
                 'Content-Type': 'application/json'
-            }
+            })
         })
-            .then(response => response.json())
-            .then(data => this.props.setToken(data.sessionToken))
-    }
-
-   
-    handleChange = (event) => {
-        this.setState({ [event.target.id]: event.target.value })
+            .then(
+                (response) => response.json())
+            .then((data) => {
+                this.props.setToken(data.sessionToken)
+            })
+            event.preventDefault()
     }
     
+
+
     logginToggle = (event) => {
         event.preventDefault();
         const login = this.state.login;
@@ -74,15 +80,15 @@ class Auth extends Component {
             )
         return (
             <div className="form-style-8">
-            <h2>{title}</h2>
-            <form onSubmit={this.handleSubmit}>
-              <input type="email" id="email" placeholder="Email" onChange={this.handleChange} value={this.state.email}/>
-              <input type="password" id="password" placeholder="Password" onChange={this.handleChange} value={this.state.password}/>
-              {singupFields}
-              <input type="submit" value="Submit" id="submit" onClick={this.formValidation}/><br/>
-              <input type="button" value="Need an account?" onClick={this.logginToggle} id="toggle"/>
-            </form>
-          </div>
+                <h2>{title}</h2>
+                <form onSubmit={this.handleSubmit}>
+                    <input type="email" id="email" placeholder="Email" onChange={this.handleChange} value={this.state.email} />
+                    <input type="password" id="password" placeholder="Password" onChange={this.handleChange} value={this.state.password} />
+                    {singupFields}
+                    <input type="submit" value="Submit" id="submit" /><br />
+                    <input type="button" value="Need an account?" onClick={this.logginToggle} id="toggle" />
+                </form>
+            </div>
         )
 
     }

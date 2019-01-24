@@ -9,6 +9,8 @@ import {
 import About from './components/Navbar/About/About';
 import Faq from './components/Navbar/FAQ/Faq';
 import Contact from './components/Navbar/Contact/Contact';
+import Splash from './components/splash/Splash';
+
 
 
 class App extends Component {
@@ -31,11 +33,16 @@ class App extends Component {
     this.setState({ sessionToken: token });
   }
 
+  logout = () => {
+    this.setState({ sessionToken: ''});
+    localStorage.clear();
+  }
+
   decideViews = () => {
-    if (this.state.sessionToken === '') {
+    if (this.state.sessionToken === localStorage.getItem('token')) {
       return (
         <Switch>
-          <Route exact path="/"><BoxHero setToken={this.setSessionState}/></Route>
+          <Route exact path="/"><Splash sessionToken={this.state.sessionToken}/></Route>
           <Route exact path="/about"><About /></Route>
           <Route exact path="/faq"><Faq /></Route>
           <Route exact path="/contact"><Contact /></Route>
@@ -57,7 +64,7 @@ class App extends Component {
     return (
       <Router>
         <div>
-          <Navbar />
+          <Navbar clickLogout={this.logout}/>
           {this.decideViews()}
         </div>
       </Router>

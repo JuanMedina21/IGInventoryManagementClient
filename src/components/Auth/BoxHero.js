@@ -2,6 +2,7 @@ import React from 'react';
 import Radium from 'radium';
 import Auth from './Auth';
 
+
 const styles = {
     boxhero: {
         backgroundColor: '#E4E4E5',
@@ -10,10 +11,10 @@ const styles = {
         paddingTop: '8em',
     }
 }
-const BoxHero = () => {
+const BoxHero = (props) => {
     return(
         <div style={styles.boxhero}>
-        <Auth/>
+        <Auth setToken={props.setToken}/>
         </div>
     )
 }

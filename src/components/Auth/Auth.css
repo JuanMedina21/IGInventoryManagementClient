@@ -71,7 +71,7 @@
 	text-transform: uppercase;
 }
 .form-style-8 input[type="button"]:hover, 
-.form-style-8 input[type="submit"]:hover {
+.form-style-8 input[type="submit"]:hover{
 	background:linear-gradient(to bottom, #035A8E 5%, #1D0746 100%);
     background-color:#035A8E;
     color: rgb(217, 219, 224);

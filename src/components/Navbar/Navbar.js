@@ -10,6 +10,7 @@ import {
 
 
 
+
 //   http://paletton.com/#uid=53T0u0klblAazwDfTqUqrgmvNaZ
 const styles = {
   navbar: {
@@ -45,15 +46,16 @@ const styles = {
     paddingRight: '3em'
   },
 
-  test: {
-    backgroundColor: 'blue'
+  logout: {
+    marginLeft: '35px'
   }
+
 
 }
 
 
 
-const Sitebar = () => (
+const Sitebar = (props) => (
 
   <div>
     <div>
@@ -64,7 +66,7 @@ const Sitebar = () => (
           <Link to="/" style={styles.link}>Home</Link>
           <Link to="/about" style={styles.link}>About</Link>
           <Link to="/faq" style={styles.link}>FAQ</Link>
-          <Link to="/contact" style={styles.link}>Contact</Link>
+          <button onClick={() => props.clickLogout()} type="button" style={styles.logout} id="logout">Logout</button>
         </Nav>
       </Navbar>
     </div>

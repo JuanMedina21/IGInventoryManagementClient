@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './Auth.css';
+import APIURL from '../../helpers/environment';
 
 class Auth extends Component {
     constructor(props) {
@@ -15,7 +16,7 @@ class Auth extends Component {
 
     handleSubmit = (event) => {
         event.preventDefault()
-        const url = this.state.login ? 'http://localhost:3000/api/signin' : 'http://localhost:3000/api/signup'
+        const url = this.state.login ? `${APIURL}/api/signin` : `${APIURL}/api/signup`
 
         fetch(url, {
             method: 'POST',

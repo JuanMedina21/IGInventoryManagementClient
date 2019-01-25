@@ -1,0 +1,21 @@
+#expand {
+    width: 65%;
+    margin-left: 17%;
+    margin-top: 2%;
+    background-color: #0F83C8;
+}
+
+#expandTitle {
+    color: white;
+    padding-left: 30px;
+    font-size: 1.1em;
+}
+
+#button{
+    background-color: rgb(34, 182, 137);
+    border-color: rgb(34, 182, 137);
+}
+
+#icon{
+    color: white;
+}

@@ -1,10 +1,29 @@
 import React, { Component } from 'react';
-import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
+import { Button, Form, FormGroup, Input } from 'reactstrap';
 import APIURL from '../../helpers/environment';
+import PropTypes from 'prop-types';
+import { withStyles } from '@material-ui/core/styles';
+import ExpansionPanel from '@material-ui/core/ExpansionPanel'
+import AddIcon from '@material-ui/icons/Add';
+import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
+import Typography from '@material-ui/core/Typography';
+import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
+import './Product.css'
+
+
+const styles = theme => ({
+    root: {
+        width: '100%'
+    },
+    heading: {
+        fontSize: theme.typography.pxToRem(15),
+        fontWeight: theme.typography.fontWeightRegular,
+    },
+});
+
 
 
 class ProductCreate extends Component {
-
     constructor(props) {
         super(props)
         this.state = {
@@ -15,6 +34,8 @@ class ProductCreate extends Component {
             quantity: ''
         };
     }
+
+
 
     handleChange = (event) => {
         this.setState({
@@ -44,36 +65,43 @@ class ProductCreate extends Component {
                 })
             })
     }
-
     render() {
+
         return (
-            <div>
-                <h3>Enter a New Product</h3>
-                <hr />
-                
-                <Form onSubmit={this.handleSubmit} >
-                    <FormGroup>
-                        <Label for="manufacturer">Manufacturer</Label>
-                        <Input id="manufacturer" type="text" name="manufacturer" value={this.state.manufacturer} placeholder="enter manufacturer" onChange={this.handleChange} />
-                    </FormGroup>
-                    <FormGroup>
-                        <Label for="model">Model</Label>
-                        <Input type="text" name="model" id="model" value={this.state.model} onChange={this.handleChange} placeholder="Model">
-                        </Input>
-                    </FormGroup>
-                    <FormGroup>
-                        <Label for="description">Description</Label>
-                        <Input id="description" type="text" name="description" value={this.state.description} placeholder="enter description" onChange={this.handleChange} />
-                    </FormGroup>
-                    <FormGroup>
-                        <Label for="quantity">Quantity</Label>
-                        <Input id="quantity" type="text" name="quantity" value={this.state.quantity} placeholder="enter quantity" onChange={this.handleChange} />
-                    </FormGroup>
-                    <Button type="submit" color="primary"> Submit </Button>
-                </Form>
+            <div className={styles.root} >
+                <ExpansionPanel id="expand">
+                    <ExpansionPanelSummary expandIcon={<AddIcon id="icon"/>}>
+                        <Typography className={styles.heading} id="expandTitle">Add New Product</Typography>
+                    </ExpansionPanelSummary>
+                    <ExpansionPanelDetails>
+                        <Form inline onSubmit={this.handleSubmit} >
+                            <FormGroup className="mb-2 mr-sm-2 mb-sm-0">
+                                <Input id="manufacturer" type="text" name="manufacturer" value={this.state.manufacturer} placeholder="Enter Manufacturer" onChange={this.handleChange} />
+                            </FormGroup>
+
+                            <FormGroup className="mb-2 mr-sm-2 mb-sm-0">
+                                <Input type="text" name="model" id="model" value={this.state.model} onChange={this.handleChange} placeholder="Enter Model">
+                                </Input>
+                            </FormGroup>
+                            
+                            <FormGroup className="mb-2 mr-sm-2 mb-sm-0">
+                                <Input id="description" type="text" name="description" value={this.state.description} placeholder="Enter Description" onChange={this.handleChange} />
+                            </FormGroup>
+                            <FormGroup className="mb-2 mr-sm-2 mb-sm-0">
+                                <Input id="quantity" type="text" name="quantity" value={this.state.quantity} placeholder="Enter Quantity" onChange={this.handleChange} />
+                            </FormGroup>
+                            <Button type="submit" id="button"> Submit </Button>
+                        </Form>
+                    </ExpansionPanelDetails>
+                </ExpansionPanel>
             </div>
         )
     }
 }
 
-export default ProductCreate;
+ProductCreate.propTypes = {
+    classes: PropTypes.object.isRequired,
+};
+
+export default withStyles(styles)(ProductCreate);
+

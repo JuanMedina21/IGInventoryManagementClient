@@ -3,6 +3,7 @@ import {
   Navbar,
   NavbarBrand,
   Nav,
+  Button
 } from 'reactstrap';
 import {
   Link,
@@ -31,7 +32,8 @@ const styles = {
     paddingLeft: '1em',
     paddingRight: '1em',
     fontSize: '18px',
-    textDecoration: 'none'
+    textDecoration: 'none',
+    paddingTop: '.3em'
   },
 
   button: {
@@ -47,7 +49,8 @@ const styles = {
   },
 
   logout: {
-    marginLeft: '35px'
+    marginLeft: '25px',
+    backgroundColor: '#22B689'
   }
 
 
@@ -66,7 +69,7 @@ const Sitebar = (props) => (
           <Link to="/" style={styles.link}>Home</Link>
           <Link to="/about" style={styles.link}>About</Link>
           <Link to="/faq" style={styles.link}>FAQ</Link>
-          <button onClick={() => props.clickLogout()} type="button" style={styles.logout} id="logout">Logout</button>
+          <Button onClick={() => props.clickLogout()} type="button" style={styles.logout} id="logout">Logout</Button>
         </Nav>
       </Navbar>
     </div>

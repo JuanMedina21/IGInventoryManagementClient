@@ -1,7 +1,6 @@
 #expand {
     width: 65%;
     margin-left: 17%;
-    margin-top: 2%;
     background-color: #0F83C8;
 }
 
@@ -18,4 +17,31 @@
 
 #icon{
     color: white;
+}
+
+#tableHeader{
+    background-color: white;
+}
+
+#editIcon{
+    background-color: #472F76;
+    color: white;
+    size: 10px;
+    width: 3em;
+    height: 3em;
+    
+}
+
+#deleteIcon{
+    background-color: rgb(233, 20, 20);
+    color: white;
+    margin-right: -20px;
+    margin-left: 15px;
+    width: 3em;
+    height: 3em;
+}
+
+#tableTitle{
+    text-align: center;
+    margin-top: 3%;
 }

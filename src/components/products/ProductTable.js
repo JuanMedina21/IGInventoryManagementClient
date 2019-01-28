@@ -1,72 +1,97 @@
 import React from 'react';
-import { Table, Button} from 'reactstrap';
+// import { Table, Button} from 'reactstrap';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Fab from '@material-ui/core/Fab';
 import EditIcon from '@material-ui/icons/Edit';
 import DeleteIcon from '@material-ui/icons/Delete';
+import Table from '@material-ui/core/Table';
+import TableBody from '@material-ui/core/TableBody';
+import TableCell from '@material-ui/core/TableCell';
+import TableHead from '@material-ui/core/TableHead';
+import TableRow from '@material-ui/core/TableRow';
+import Paper from '@material-ui/core/Paper';
+import './Product.css'
 
+const CustomTableCell = withStyles(theme => ({
+    head: {
+        backgroundColor: '#3247B5',
+        color: theme.palette.common.white,
+        fontSize: 16
+    },
+    body: {
+        fontSize: 15,
+    },
+}))(TableCell);
 
 const styles = theme => ({
-    fab: {
-        margin: theme.spacing.unit,
+    root: {
+        width: '85%',
+        overflowX: 'auto',
+        marginLeft: '7%',
+        marginTop: '1.5%'
     },
-    extendedIcon: {
-        marginRight: theme.spacing.unit,
+    table: {
+        width: '100%',
+    },
+    row: {
+        '&:nth-of-type(odd)': {
+            backgroundColor: theme.palette.background.default,
+        },
     },
 });
 
 
-const ProductTable = (props) => {
+function ProductTable(props) {
     const { classes } = props;
+
     return (
         <div>
-            <h3>Product History</h3>
-            <hr />
-            <Table striped>
-                <thead>
-                    <tr>
-                        <th>#</th>
-                        <th>Manufacturer</th>
-                        <th>Model</th>
-                        <th>Description</th>
-                        <th>Quantity</th>
-                        <th></th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {
-                        props.products.map((product, id) => {
+            <h3 id="tableTitle">Product History</h3>
+            <Paper className={classes.root}>
+                <Table className={classes.table}>
+                    <TableHead id="tableHeader">
+                        <TableRow>
+                            <CustomTableCell>ID #</CustomTableCell>
+                            <CustomTableCell align="center">Manufacturer</CustomTableCell>
+                            <CustomTableCell align="center">Model</CustomTableCell>
+                            <CustomTableCell align="center">Description</CustomTableCell>
+                            <CustomTableCell align="center">Quantity</CustomTableCell>
+                            <CustomTableCell align="center"></CustomTableCell>
+                        </TableRow>
+                    </TableHead>
+                    <TableBody>
+                        {props.products.map((product, id) => {
                             return (
-                                <tr key={id}>
-                                    <th scope="row">{product.id}</th>
-                                    <td>{product.manufacturer}</td>
-                                    <td>{product.model}</td>
-                                    <td>{product.description}</td>
-                                    <td>{product.quantity}</td>
-                                    <td>
-
-                                        <Fab  color="secondary" aria-label="Edit" className={classes.fab}>
+                                <TableRow className={classes.row} key={id}>
+                                    <CustomTableCell>{product.id}</CustomTableCell>
+                                    <CustomTableCell align="center">{product.manufacturer}</CustomTableCell>
+                                    <CustomTableCell align="center">{product.model}</CustomTableCell>
+                                    <CustomTableCell align="center">{product.description}</CustomTableCell>
+                                    <CustomTableCell align="center">{product.quantity}</CustomTableCell>
+                                    <CustomTableCell>
+                                        <Fab aria-label="Edit" className={classes.fab} id="editIcon">
                                             <EditIcon id={product.id} onClick={e => props.update(e, product)}>edit_icon</EditIcon>
                                         </Fab>
-                                        <Fab  aria-label="Delete" className={classes.fab}>
-                                            <DeleteIcon id={product.id} onClick={props.delete}/>
+                                        <Fab aria-label="Delete" className={classes.fab} id="deleteIcon">
+                                            <DeleteIcon id={product.id} onClick={props.delete} />
                                         </Fab>
-                                        {/* <Button id={product.id} onClick={props.delete} color="danger">Delete</Button>|
-                                        <Button id={product.id} onClick={e => props.update(e, product)} color="warning">Update</Button> */}
-                                    </td>
-                                </tr>
+                                    </CustomTableCell>
+                                </TableRow>
                             )
-                        })
-                    }
-                </tbody>
-            </Table>
+
+                        }
+                        )}
+                    </TableBody>
+                </Table>
+            </Paper>
         </div>
     );
 }
 
+
 ProductTable.propTypes = {
     classes: PropTypes.object.isRequired,
-  };
+};
 
-  export default withStyles(styles)(ProductTable);
+export default withStyles(styles)(ProductTable);

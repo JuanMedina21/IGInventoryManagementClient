@@ -10,7 +10,7 @@ class Auth extends Component {
             firstName: '',
             lastName: '',
             email: '',
-            password: ''
+            password: '', 
         }
     }
 
@@ -57,15 +57,22 @@ class Auth extends Component {
         })
     }
 
-    // formValidation = (event) => {
-    //     event.preventDefault();
+    
 
-    //     if(this.state.firstName === '' || this.state.lastName === '' || this.state.email === '' || this.state.password === '' ){
-    //         alert('Please complete all fields')
-    //     } else {
-    //         alert('Thanks for completing the form')
-    //     }
-    // }
+    formValidation = () => {
+        if(this.state.password.length < 4){
+            alert('Password must contain at least 4 characters')
+        }
+        if(this.state.email.split("").filter(x => x === "@").length !== 1) {
+            alert('Email should contain an @ character')
+        }
+        if(this.state.password === ''){
+            alert('Password cannot be empty')
+        }
+        if(this.state.email === ''){
+            alert('Email cannot be empty')
+        }
+    }
 
     render() {
         let title = this.state.login ? "LOGIN TO YOUR ACCOUNT" : "CREATE AN ACCOUNT";
@@ -85,7 +92,7 @@ class Auth extends Component {
                     <input type="email" id="email" placeholder="Email" onChange={this.handleChange} value={this.state.email} />
                     <input type="password" id="password" placeholder="Password" onChange={this.handleChange} value={this.state.password} />
                     {singupFields}
-                    <input type="submit" value="Submit" id="submit" /><br />
+                    <input type="submit" value="Submit" id="submit" onClick={this.formValidation}/><br />
                     <input type="button" value="Need an account?" onClick={this.logginToggle} id="toggle" />
                 </form>
             </div>

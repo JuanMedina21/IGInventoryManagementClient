@@ -70,3 +70,6 @@ class ProductEdit extends React.Component {
 }
 
 export default ProductEdit;
+
+
+

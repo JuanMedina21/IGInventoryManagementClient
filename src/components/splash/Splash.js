@@ -3,11 +3,13 @@ import ProductIndex from '../products/ProductIndex'
 import './Splash.css'
 
 const Splash = (props) => {
-  return (
-      <div className="splash">
-          <ProductIndex token={props.sessionToken} />
-      </div>
-  ) 
+    return (
+        <div id="splash">
+            <div>
+                <ProductIndex token={props.sessionToken} />
+            </div>
+        </div>
+    )
 }
 
 export default Splash;

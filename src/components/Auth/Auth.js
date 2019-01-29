@@ -57,22 +57,7 @@ class Auth extends Component {
         })
     }
 
-    
 
-    formValidation = () => {
-        if(this.state.password.length < 4){
-            alert('Password must contain at least 4 characters')
-        }
-        if(this.state.email.split("").filter(x => x === "@").length !== 1) {
-            alert('Email should contain an @ character')
-        }
-        if(this.state.password === ''){
-            alert('Password cannot be empty')
-        }
-        if(this.state.email === ''){
-            alert('Email cannot be empty')
-        }
-    }
 
     render() {
         let title = this.state.login ? "LOGIN TO YOUR ACCOUNT" : "CREATE AN ACCOUNT";
@@ -81,18 +66,18 @@ class Auth extends Component {
             ? null
             : (
                 <div>
-                    <input type="text" id="firstName" placeholder="First Name" onChange={this.handleChange} value={this.state.firstName} /><br />
-                    <input type="text" id="lastName" placeholder="Last Name" onChange={this.handleChange} value={this.state.lastName} />
+                    <input type="text" id="firstName" placeholder="First Name" onChange={this.handleChange} value={this.state.firstName} required/><br />
+                    <input type="text" id="lastName" placeholder="Last Name" onChange={this.handleChange} value={this.state.lastName} required/>
                 </div>
             )
         return (
             <div className="form-style-8">
                 <h2>{title}</h2>
                 <form onSubmit={this.handleSubmit}>
-                    <input type="email" id="email" placeholder="Email" onChange={this.handleChange} value={this.state.email} />
-                    <input type="password" id="password" placeholder="Password" onChange={this.handleChange} value={this.state.password} />
+                    <input type="email" id="email" placeholder="Email" onChange={this.handleChange} value={this.state.email} required/>
+                    <input type="password" id="password" placeholder="Password" onChange={this.handleChange} value={this.state.password} required minlength="4"/>
                     {singupFields}
-                    <input type="submit" value="Submit" id="submit" onClick={this.formValidation}/><br />
+                    <input type="submit" value="Submit" id="submit" /><br />
                     <input type="button" value="Need an account?" onClick={this.logginToggle} id="toggle" />
                 </form>
             </div>

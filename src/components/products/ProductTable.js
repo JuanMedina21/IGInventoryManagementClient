@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Fab from '@material-ui/core/Fab';
 import EditIcon from '@material-ui/icons/Edit';
-import DeleteIcon from '@material-ui/icons/Delete';
+import { Button } from 'reactstrap';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
@@ -73,13 +73,11 @@ function ProductTable(props) {
                                         <Fab aria-label="Edit" className={classes.fab} id="editIcon">
                                             <EditIcon id={product.id} onClick={e => props.update(e, product)}>edit_icon</EditIcon>
                                         </Fab>
-                                        <Fab aria-label="Delete" className={classes.fab} id="deleteIcon">
-                                            <DeleteIcon id={product.id} onClick={props.delete} />
-                                        </Fab>
+                
+                                        <Button id={product.id} onClick={props.delete} color="danger" className="delete">Delete</Button>
                                     </CustomTableCell>
                                 </TableRow>
                             )
-
                         }
                         )}
                     </TableBody>

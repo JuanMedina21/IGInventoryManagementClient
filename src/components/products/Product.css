@@ -32,13 +32,10 @@
     
 }
 
-#deleteIcon{
+.delete{
     background-color: rgb(233, 20, 20);
-    color: white;
     margin-right: -20px;
-    margin-left: 15px;
-    width: 3em;
-    height: 3em;
+    margin-left: 13px;
 }
 
 #tableTitle{
